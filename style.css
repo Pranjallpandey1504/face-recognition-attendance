@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #e6f2ff;  /* Light blue background */
+}
+
+h1 {
+    color: #007bff;  /* Darker blue for headings */
+}
+
+input[type="file"] {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #99ccff;  /* Light blue border */
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #3399ff;  /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #007bff;  /* Darker blue on hover */
+}
+
+#myResult {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #0056b3;  /* Deep blue for results text */
+}
+
+/* Centering the image */
+#webcam-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    margin-top: 20px;
+    border: 2px solid #3399ff;  /* Border color matching button */
+    border-radius: 5px;
+}
+
+/* Specific style for the resized image */
+#myImage {
+    width: 240px;   
+    height: 240px;  
+}

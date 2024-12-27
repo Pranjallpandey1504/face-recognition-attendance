@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="style.css">  <!-- Link to external CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+</head>
+<body>
+    <h1>Student Attendance</h1>
+    
+    <video id="webcam" width="240" height="240" autoplay></video>
+    <button id="classifyButton">Capture and Classify</button>
+    
+    <div id="myResult">Waiting for image...</div>
+    
+    <!-- Container for centering the image -->
+    <div id="webcam-container">
+        <img id="myImage" src="" style="display:none;">
+    </div>
+
+    <script src="script.js"></script>  <!-- External JavaScript for logic -->
+</body>
+</html>
