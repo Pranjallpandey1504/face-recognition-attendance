@@ -2,10 +2,15 @@ let classifier;
 let video;
 let img;
 
+const presentStudents = new Set();
+let presentListElement;
+let resultDiv;
+
 function setup() {
-    // Create a video element
     video = document.getElementById("webcam");
-    
+    presentListElement = document.getElementById("presentList");
+    resultDiv = document.getElementById("myResult");
+
     // Set up the webcam
     navigator.mediaDevices.getUserMedia({ video: true })
         .then(function(stream) {
@@ -29,9 +34,7 @@ document.getElementById("classifyButton").addEventListener("click", () => {
 });
 
 function classifyImage() {
-    // Capture the current frame from the video
     img = getCanvasImage(video);
-    
     classifier.classify(img, gotResult);
 }
 
@@ -39,10 +42,10 @@ function getCanvasImage(video) {
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-  
+
     const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
-  
+
     return canvas;
 }
 
@@ -51,19 +54,42 @@ function gotResult(results, error) {
         console.error(error);
         return;
     }
-    
-    let label = results[0].label.toLowerCase();  // Convert label to lowercase for matching
-    let resultDiv = document.getElementById("myResult");
 
-    // Check for Alisha or others
+    let label = results[0].label.toLowerCase();
+
     if (label.includes('pranjal')) {
-        resultDiv.innerHTML = "Welcome pranjal";
-        resultDiv.style.color = "green";
+        markStudent('Pranjal');
+    } else if (label.includes('alisha')) {
+        markStudent('Alisha');
+    } else if (label.includes('ravi')) {
+        markStudent('Ravi');
     } else {
-        resultDiv.innerHTML = "Invalid Student";
-        resultDiv.style.color = "red";
+        markInvalid();
     }
 }
 
-// Initialize the model when the page loads
+function markStudent(name) {
+    resultDiv.innerHTML = `Welcome ${name}`;
+    resultDiv.style.color = "green";
+
+    if (!presentStudents.has(name)) {
+        presentStudents.add(name);
+        updatePresentList();
+    }
+}
+
+function markInvalid() {
+    resultDiv.innerHTML = "Invalid Student";
+    resultDiv.style.color = "red";
+}
+
+function updatePresentList() {
+    presentListElement.innerHTML = '';
+    presentStudents.forEach(student => {
+        const li = document.createElement('li');
+        li.textContent = student;
+        presentListElement.appendChild(li);
+    });
+}
+
 window.onload = setup;
